@@ -1,30 +1,16 @@
-import dotenv from 'dotenv'
-import express from 'express';
-import mongoose from 'mongoose';
-import customerRoutes from './routes/customerRoutes.js'
-
-
-dotenv.config()
+import express from "express";
+import connectDB from "./config/db.js";
+import customerRouter from "./routes/customerRoutes.js";
 
 const app = express();
-app.use(express.json());   // Middleware to parse JSON
+app.use(express.json()); // Middleware to parse JSON
 
-const PORT = process.env.PORT
+const PORT = 3000;
 
-
-const connectDB = async () => {
-   try {
-       await mongoose
-        .connect(process.env.MONGO_URI)
-        .then(() => console.log('DB Connected Successfully'));
-} catch (error) {
-        console.log(`Error: ${error}`);
-        
-};
-
-};
 connectDB();
 
-app.use('/api/customers', customerRoutes)
+app.use("/api/customers", customerRouter);
 
-app.listen(PORT,() => console.log(`Server is running in http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server is running in http://localhost:${PORT}`)
+);
