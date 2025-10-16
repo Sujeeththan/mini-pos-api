@@ -1,6 +1,7 @@
 import express from "express";
 import customerRouter from "./routes/customerRoutes.js";
 import itemRouter from "./routes/itemRoutes.js";
+import saleRouter from "./routes/saleRoutes.js";
 import connectDB from "./config/db.js";
 
 const app = express();
@@ -12,6 +13,7 @@ connectDB();
 
 app.use("/api/customers", customerRouter);
 app.use("/api/items", itemRouter);
+app.use("/api/sales", saleRouter);
 
 app.listen(PORT, () =>
   console.log(`Server is running in http://localhost:${PORT}`)
