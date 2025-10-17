@@ -1,14 +1,18 @@
 import express from "express";
+import connectDB from "./config/db.js";
+
 import customerRouter from "./routes/customerRoutes.js";
 import itemRouter from "./routes/itemRoutes.js";
 import saleRouter from "./routes/saleRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-import connectDB from "./config/db.js";
 
 const app = express();
 app.use(express.json()); // Middleware to parse JSON
 
-const PORT = 3000;
+app.get("/", (req, res) => {
+  res.send("Mini pos api working successfully");
+});
+const PORT = process.env.PORT;
 
 connectDB();
 
