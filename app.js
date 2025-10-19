@@ -3,7 +3,7 @@ import connectDB from "./config/db.js";
 import customerRouter from "./routes/customerRoutes.js";
 import itemRouter from "./routes/itemRoutes.js";
 import saleRouter from "./routes/saleRoutes.js";
-import userRouter from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 app.use(express.json()); // Middleware to parse JSON
@@ -18,7 +18,7 @@ connectDB();
 app.use("/api/customers", customerRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/sales", saleRouter);
-app.use("/api/users", userRouter);
+app.use("/api/users", authRoutes);
 
 app.listen(PORT, () =>
   console.log(`Server is running in http://localhost:${PORT}`)
