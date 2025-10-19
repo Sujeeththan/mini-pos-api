@@ -41,6 +41,10 @@ const itemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+},
+{
+    timestamps: false,
+    versionKey: false,
 });
 
 export default mongoose.model("Item", itemSchema);
