@@ -32,6 +32,7 @@ const saleSchema = new mongoose.Schema(
   },
   {
     timestamps: false,
+    versionKey:false
   }
 );
 
