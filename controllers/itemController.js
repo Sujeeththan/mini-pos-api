@@ -5,7 +5,7 @@ export const getAllItems = async (req, res) => {
     const items = await Item.find();
     res.status(200).json(items);
   } catch (error) {
-    res.error.status(500).json({ error: error.Message });
+    res.status(500).json({ error: error.Message });
   }
 };
 
