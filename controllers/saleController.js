@@ -42,12 +42,16 @@ export const createSale = async (req, res) => {
 export const updateSale = async (req, res) => {
   try {
     const id = req.params.id;
-    const sale = await Sale.findOne({ _id: id });
-    if (!sale) {
-      return res.status(404).json({ Message: "Sale Not Update" });
-    }
 
-    const saleUpdate = await Sale.findByIdAndUpdate(id, req.body);
+    const saleUpdate = await Sale.findByIdAndUpdate(
+      id,
+      req.body.sale || req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (!saleUpdate) {
+      return res.status(404).json({ message: "Sale not found" });
+    }
     res.status(201).json({
       Message: "Sale Update Successfully",
       sale: saleUpdate,
